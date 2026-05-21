@@ -3,236 +3,547 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tran Yen Nhi - Portfolio</title>
+    <title>유니버디 (Uni-Buddy): 경민대학교 유학생 지원 스마트 챗봇</title>
+    <!-- Premium Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header id="header">
-        <div class="container nav-container">
-            <div class="logo">
-                <a href="#home">Yến Nhi <span>.</span></a>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h2>Uni-Buddy <span>.</span></h2>
             </div>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#home">홈</a></li>
-                    <li><a href="#about">소개</a></li>
-                    <li><a href="#skills">기술</a></li>
-                    <li><a href="#projects">프로젝트</a></li>
-                    <li><a href="#contact">연락처</a></li>
+            
+            <div class="user-profile-summary">
+                <img src="avatar.png" alt="Student Avatar" class="profile-avatar" onerror="this.src='https://api.dicebear.com/7.x/adventurer/svg?seed=Nhi&backgroundColor=ffb6c1'">
+                <div class="profile-info">
+                    <h3 class="profile-name">Trần Yến Nhi (옌니)</h3>
+                    <p class="profile-id">학번: 25071089</p>
+                    <span class="profile-tag">경민대학교</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="#dashboard" class="nav-link active" data-tab="dashboard">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>대시보드</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#chatbot" class="nav-link" data-tab="chatbot">
+                            <i class="fas fa-comment-dots"></i>
+                            <span>유니버디 챗봇</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#planner" class="nav-link" data-tab="planner">
+                            <i class="fas fa-wallet"></i>
+                            <span>재정 계획기</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#checklist" class="nav-link" data-tab="checklist">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>유학 준비 체크리스트</span>
+                        </a>
+                    </li>
                 </ul>
-                <div class="hamburger">
+            </nav>
+
+            <div class="sidebar-footer">
+                <p>&copy; 2026 Trần Yến Nhi. Made with <i class="fas fa-heart"></i></p>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Mobile Header -->
+            <header class="mobile-header">
+                <div class="hamburger-menu">
                     <i class="fas fa-bars"></i>
                 </div>
-            </nav>
-        </div>
-    </header>
+                <div class="mobile-brand">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h2>Uni-Buddy</h2>
+                </div>
+                <div class="mobile-avatar">
+                    <img src="avatar.png" alt="Avatar" onerror="this.src='https://api.dicebear.com/7.x/adventurer/svg?seed=Nhi&backgroundColor=ffb6c1'">
+                </div>
+            </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <!-- Cute Decorations -->
-            <div class="cute-deco deco-1">🌸</div>
-            <div class="cute-deco deco-2">✨</div>
-            <div class="cute-deco deco-3">🎀</div>
-            <div class="cute-deco deco-4">💖</div>
-            <div class="cute-deco deco-5">🌷</div>
-            <div class="container hero-container">
-                <div class="hero-content">
-                    <p class="greeting">안녕하세요, 저는</p>
-                    <h1 class="name">TRẦN YẾN NHI</h1>
-                    <h2 class="title"><span class="typing-text"></span></h2>
-                    <p class="sbd">학번: 25071089</p>
-                    <p class="description">저는 소프트웨어 공학을 전공하는 학생으로 프로그래밍과 재미있는 게임 만들기를 좋아합니다.</p>
-                    <div class="hero-buttons">
-                        <a href="#projects" class="btn btn-primary">프로젝트 보기</a>
-                        <a href="#contact" class="btn btn-secondary">연락하기</a>
+            <!-- TAB 1: DASHBOARD -->
+            <section id="dashboard" class="tab-content active">
+                <div class="welcome-banner">
+                    <div class="banner-text">
+                        <h1>안녕하세요, 옌니님! 👋</h1>
+                        <p>경민대학교(경민대) 유학 포털에 오신 것을 환영합니다. 성공적인 유학 생활을 위해 유니버디와 함께 꼼꼼하게 준비해 봐요!</p>
+                    </div>
+                    <div class="banner-countdown">
+                        <div class="countdown-value" id="days-countdown">45</div>
+                        <div class="countdown-label">출국까지 남은 일수</div>
                     </div>
                 </div>
-                <div class="hero-image">
-                    <div class="blob-shape">
-                        <img src="avatar.png" alt="Avatar Trần Yến Nhi">
-                    </div>
-                </div>
-            </div>
-            <div class="scroll-down">
-                <a href="#about"><i class="fas fa-chevron-down"></i></a>
-            </div>
-        </section>
 
-        <!-- About Section -->
-        <section id="about" class="about">
-            <div class="container">
-                <div class="section-heading">
-                    <h2>소개</h2>
-                    <div class="underline"></div>
-                </div>
-                <div class="about-content reveal">
-                    <div class="about-text">
-                        <h3>기술과 게임에 열정을 가진 학생</h3>
-                        <p>안녕하세요! 저는 쩐옌니(Tran Yen Nhi)입니다. 현재 소프트웨어 공학을 전공하고 있습니다. 저는 소프트웨어 애플리케이션의 작동 원리에 항상 호기심을 가지고 있으며 특히 게임 개발 분야에 큰 열정을 가지고 있습니다.</p>
-                        <p>끊임없는 배움의 자세로 창의적인 아이디어를 실제 코드로 구현하는 것을 즐깁니다. 핑크색은 긍정적인 에너지, 젊음, 그리고 새로움을 주기 때문에 제가 가장 좋아하는 색상입니다!</p>
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <span class="label">이름:</span>
-                                <span class="value">Trần Yến Nhi (쩐옌니)</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="label">학번:</span>
-                                <span class="value">25071089</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="label">전공:</span>
-                                <span class="value">소프트웨어 공학</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="label">취미:</span>
-                                <span class="value">게임 개발, 음악 감상, 핑크색</span>
+                <div class="dashboard-grid">
+                    <!-- Progress Card 1: Checklist -->
+                    <div class="dashboard-card status-card">
+                        <div class="card-icon blue-gradient">
+                            <i class="fas fa-suitcase"></i>
+                        </div>
+                        <div class="card-details">
+                            <h3>유학 짐싸기 준비</h3>
+                            <div class="progress-container">
+                                <div class="progress-bar-wrapper">
+                                    <div class="progress-bar" id="packing-progress-bar" style="width: 40%"></div>
+                                </div>
+                                <span class="progress-text" id="packing-progress-text">40% 완료됨</span>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Skills Section -->
-        <section id="skills" class="skills bg-light">
-            <div class="container">
-                <div class="section-heading">
-                    <h2>기술</h2>
-                    <div class="underline"></div>
-                </div>
-                <div class="skills-grid reveal">
-                    <div class="skill-card">
-                        <i class="fab fa-html5"></i>
-                        <h3>HTML/CSS</h3>
-                        <p>기본적이고 반응형이며 아름다운 웹 인터페이스 구축.</p>
+                    <!-- Progress Card 2: Visa Status -->
+                    <div class="dashboard-card status-card">
+                        <div class="card-icon green-gradient">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <div class="card-details">
+                            <h3>D-2 비자 상태</h3>
+                            <span class="status-badge success">승인됨 (Approved)</span>
+                            <p class="status-desc">비자 연장 상세 일정은 챗봇에서 확인하세요</p>
+                        </div>
                     </div>
-                    <div class="skill-card">
-                        <i class="fab fa-js"></i>
-                        <h3>JavaScript</h3>
-                        <p>웹용 로직 프로그래밍, 상호작용 및 브라우저 게임 개발.</p>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fab fa-python"></i>
-                        <h3>Python</h3>
-                        <p>문제 해결과 작은 게임을 만들기 위해 가장 좋아하는 언어.</p>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fas fa-gamepad"></i>
-                        <h3>Game Development</h3>
-                        <p>게임 로직 설계, 충돌 처리 및 애니메이션.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Projects Section -->
-        <section id="projects" class="projects">
-            <div class="container">
-                <div class="section-heading">
-                    <h2>진행한 프로젝트</h2>
-                    <div class="underline"></div>
+                    <!-- Progress Card 3: Budget Limit -->
+                    <div class="dashboard-card status-card">
+                        <div class="card-icon purple-gradient">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div class="card-details">
+                            <h3>월간 예상 생활비</h3>
+                            <span class="budget-value" id="dashboard-budget-total">1,250,000 ₩</span>
+                            <span class="budget-label">매월 (한국 기준)</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="projects-grid reveal">
-                    <!-- Project 1 -->
-                    <div class="project-card">
-                        <div class="project-img burger-bg">
-                            <i class="fas fa-hamburger fa-4x"></i>
+
+                <!-- Recent Tips & Quick Access -->
+                <div class="section-row">
+                    <div class="panel-box">
+                        <div class="panel-header">
+                            <h2><i class="fas fa-bullhorn"></i> 출국 전 필수 체크 꿀팁</h2>
                         </div>
-                        <div class="project-info">
-                            <h3>Super Burger Tower</h3>
-                            <p>흥미로운 쌓기 게임입니다. 쓰러지지 않고 가장 높은 햄버거 탑을 쌓아야 합니다.</p>
-                            <div class="project-tags">
-                                <span>HTML</span>
-                                <span>CSS</span>
-                                <span>JavaScript</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Project 2 -->
-                    <div class="project-card">
-                        <div class="project-img gold-bg">
-                            <i class="fas fa-coins fa-4x"></i>
-                        </div>
-                        <div class="project-info">
-                            <h3>Gold Miner</h3>
-                            <p>클래식 금 캐기 게임. 제한된 시간 내에 갈고리를 조종하여 금과 다이아몬드를 잡는 게임입니다.</p>
-                            <div class="project-tags">
-                                <span>Game Logic</span>
-                                <span>JavaScript</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Project 3 -->
-                    <div class="project-card">
-                        <div class="project-img skate-bg">
-                            <i class="fas fa-skating fa-4x"></i>
-                        </div>
-                        <div class="project-info">
-                            <h3>Ice Skating Game</h3>
-                            <p>부드러운 피겨 스케이팅 게임. 미끄러운 얼음 위에서 장애물을 피하는 게임입니다.</p>
-                            <div class="project-tags">
-                                <span>Animation</span>
-                                <span>Physics</span>
-                            </div>
+                        <div class="panel-body">
+                            <ul class="tips-list">
+                                <li>
+                                    <span class="tip-icon"><i class="fas fa-check-circle"></i></span>
+                                    <div class="tip-content">
+                                        <h4>여권용 사진 (3.5x4.5cm) 여유 있게 챙기기</h4>
+                                        <p>한국은 사진 촬영 및 인화 비용이 다소 비싼 편입니다. 흰색 배경의 여권용 사진을 10-15장 정도 넉넉히 준비해 오시면 외국인등록증 발급이나 각종 서류 제출 시 유용합니다.</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="tip-icon"><i class="fas fa-check-circle"></i></span>
+                                    <div class="tip-content">
+                                        <h4>초기 정착용 원화(KRW) 현금 환전</h4>
+                                        <p>한국 입국 후 첫 일주일 동안 은행 계좌를 개설하고 체크카드를 만들기 전까지 사용할 수 있도록 약 50만 원에서 100만 원 정도의 원화 현금을 미리 환전해 오시는 것이 안전합니다.</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="tip-icon"><i class="fas fa-check-circle"></i></span>
+                                    <div class="tip-content">
+                                        <h4>D-2 유학 비자 연장 기한 엄수</h4>
+                                        <p>체류 기간 만료 전에 비자를 반드시 연장해야 합니다. 기한을 넘길 경우 불이익을 받을 수 있으니 경민대학교 연장 절차를 유니버디 챗봇을 통해 미리 파악해 두세요.</p>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <!-- Project 4 -->
-                    <div class="project-card">
-                        <div class="project-img snake-bg">
-                            <i class="fas fa-staff-snake fa-4x"></i>
+
+                    <div class="panel-box quick-links-box">
+                        <div class="panel-header">
+                            <h2><i class="fas fa-map-marker-alt"></i> 경민대학교 (Kyungmin University)</h2>
                         </div>
-                        <div class="project-info">
-                            <h3>Snake Game</h3>
-                            <p>전통적인 스네이크 게임을 새롭고 도전적인 속도감으로 리메이크했습니다.</p>
-                            <div class="project-tags">
-                                <span>Python/JS</span>
-                                <span>Classic Game</span>
+                        <div class="panel-body school-map-panel">
+                            <div class="map-placeholder">
+                                <i class="fas fa-university"></i>
+                                <h4>경민대학교 (경민대)</h4>
+                                <p>주소: 경기도 의정부시 서광로 29 (의정부동)</p>
+                                <button class="btn btn-primary" onclick="window.open('https://www.kyungmin.ac.kr', '_blank')">학교 공식 홈페이지 방문 <i class="fas fa-external-link-alt"></i></button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="contact bg-light">
-            <div class="container">
-                <div class="section-heading">
-                    <h2>연락처</h2>
-                    <div class="underline"></div>
+            <!-- TAB 2: CHATBOT UNI-BUDDY -->
+            <section id="chatbot" class="tab-content">
+                <div class="chatbot-container glassmorphism">
+                    <div class="chat-header">
+                        <div class="bot-info-header">
+                            <div class="bot-avatar-wrapper">
+                                <div class="bot-avatar">🦉</div>
+                                <span class="active-dot"></span>
+                            </div>
+                            <div class="bot-name-status">
+                                <h3>유니버디 (Uni-Buddy)</h3>
+                                <p>경민대 유학생 전용 스마트 비서</p>
+                            </div>
+                        </div>
+                        <div class="chat-actions">
+                            <button id="clear-chat" title="채팅 내역 지우기"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Suggested Prompts / Quick Buttons -->
+                    <div class="suggested-prompts-container">
+                        <span class="suggest-label"><i class="fas fa-bolt"></i> 빠른 추천 질문:</span>
+                        <div class="suggested-prompts">
+                            <button class="prompt-btn" data-question="D-2 비자 연장은 어떻게 하나요?">📌 D-2 비자 연장</button>
+                            <button class="prompt-btn" data-question="경민대 주변에 맛있는 음식이 뭐가 있나요?">🍱 경민대 주변 맛집</button>
+                            <button class="prompt-btn" data-question="입국 시 어떤 서류를 준비해야 하나요?">📄 입국 필수 서류</button>
+                            <button class="prompt-btn" data-question="경민대학교 기숙사는 어떤가요?">🏫 기숙사 안내</button>
+                            <button class="prompt-btn" data-question="D-2 비자로 아르바이트를 할 수 있나요?">💼 유학생 아르바이트</button>
+                        </div>
+                    </div>
+
+                    <!-- Chat Messages Window -->
+                    <div class="chat-messages" id="chat-messages-container">
+                        <!-- Bot Message -->
+                        <div class="message bot">
+                            <div class="message-avatar">🦉</div>
+                            <div class="message-bubble-wrapper">
+                                <div class="message-bubble">
+                                    안녕하세요, 옌니(Trần Yến Nhi)님! 저는 <strong>경민대학교(경민대)</strong> 유학 생활을 함께할 스마트 비서 <strong>유니버디(Uni-Buddy)</strong>입니다. 🌟
+                                    <br><br>
+                                    비자 연장 서류, 경민대 후문/정문 맛집, 기숙사 규칙, 유학생 아르바이트 허가 신청 등 궁금한 점을 편하게 물어보세요! 위의 빠른 추천 버튼을 누르셔도 답변해 드립니다!
+                                </div>
+                                <span class="message-time">시스템</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Typing Indicator -->
+                    <div class="typing-indicator" id="chat-typing-indicator">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <!-- Chat Input Field -->
+                    <div class="chat-input-area">
+                        <input type="text" id="chat-input-field" placeholder="여기에 질문을 입력해 주세요... (예: 비자 연장 방법, 맛있는 음식 추천...)" autocomplete="off">
+                        <button id="chat-send-btn" class="send-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
                 </div>
-                <div class="contact-content reveal">
-                    <div class="contact-box">
-                        <i class="fas fa-envelope"></i>
-                        <h3>이메일</h3>
-                        <p>25071089@student.edu.vn</p>
+            </section>
+
+            <!-- TAB 3: BUDGET PLANNER -->
+            <section id="planner" class="tab-content">
+                <div class="section-title-wrapper">
+                    <h1><i class="fas fa-wallet icon-gradient"></i> 유학 생활비 재정 계획기</h1>
+                    <p>국가별 맞춤형 생활비 구성을 시뮬레이션하여 체계적인 지출 계획을 세워보세요.</p>
+                </div>
+
+                <div class="planner-layout">
+                    <!-- Config Box -->
+                    <div class="panel-box planner-config">
+                        <div class="panel-header">
+                            <h2><i class="fas fa-sliders-h"></i> 월간 지출 예산 설정</h2>
+                        </div>
+                        <div class="panel-body">
+                            <form id="budget-form">
+                                <div class="form-group">
+                                    <label for="planner-country">목표 유학 국가:</label>
+                                    <select id="planner-country" class="form-control">
+                                        <option value="Hàn Quốc" selected>한국 (₩ - 원)</option>
+                                        <option value="Nhật Bản">일본 (¥ - 엔)</option>
+                                        <option value="Đức">독일 (€ - 유로)</option>
+                                        <option value="Mỹ">미국 ($ - 달러)</option>
+                                        <option value="Úc">호주 ($ - 호주달러)</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cost-rent">집세 / 기숙사비:</label>
+                                    <div class="input-unit">
+                                        <input type="number" id="cost-rent" class="form-control" value="400000" min="0">
+                                        <span class="unit-label" id="rent-currency-label">₩</span>
+                                    </div>
+                                    <small class="form-text">수도세, 전기세, 가스비, 인터넷 포함 여부를 확인하세요.</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cost-food">식비 (식재료 구매 + 외식):</label>
+                                    <div class="input-unit">
+                                        <input type="number" id="cost-food" class="form-control" value="350000" min="0">
+                                        <span class="unit-label" id="food-currency-label">₩</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cost-transport">교통비 (지하철, 버스, 대중교통):</label>
+                                    <div class="input-unit">
+                                        <input type="number" id="cost-transport" class="form-control" value="100000" min="0">
+                                        <span class="unit-label" id="transport-currency-label">₩</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cost-study">교재비 및 의료보험료:</label>
+                                    <div class="input-unit">
+                                        <input type="number" id="cost-study" class="form-control" value="150000" min="0">
+                                        <span class="unit-label" id="study-currency-label">₩</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cost-other">문화생활, 의류 쇼핑, 기타 품위유지비:</label>
+                                    <div class="input-unit">
+                                        <input type="number" id="cost-other" class="form-control" value="250000" min="0">
+                                        <span class="unit-label" id="other-currency-label">₩</span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="contact-box">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <h3>주소</h3>
-                        <p>대학교 (소프트웨어 전공)</p>
-                    </div>
-                    <div class="contact-box">
-                        <i class="fab fa-github"></i>
-                        <h3>Github</h3>
-                        <p>@yennhi2507</p> <!-- Example -->
+
+                    <!-- Statistics & Advice Box -->
+                    <div class="planner-results">
+                        <!-- Total Card -->
+                        <div class="panel-box total-budget-card gradient-bg-box">
+                            <div class="total-header">한 달 예상 총지출 금액</div>
+                            <div class="total-amount" id="total-expense-display">1,250,000 ₩</div>
+                            <div class="country-exchange-desc" id="currency-exchange-desc">~ 23,500,000 VND (베트남 동 환산)</div>
+                        </div>
+
+                        <!-- Chart Panel -->
+                        <div class="panel-box">
+                            <div class="panel-header">
+                                <h2><i class="fas fa-chart-bar"></i> 월간 소비 지출 구조 분포</h2>
+                            </div>
+                            <div class="panel-body">
+                                <div class="visual-progress-chart">
+                                    <!-- Rent -->
+                                    <div class="chart-progress-item">
+                                        <div class="chart-item-label">
+                                            <span>집세 / 기숙사비</span>
+                                            <strong id="pct-rent-text">32%</strong>
+                                        </div>
+                                        <div class="progress-bar-wrapper">
+                                            <div class="progress-bar rent-bar" id="bar-rent" style="width: 32%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Food -->
+                                    <div class="chart-progress-item">
+                                        <div class="chart-item-label">
+                                            <span>식비 지출</span>
+                                            <strong id="pct-food-text">28%</strong>
+                                        </div>
+                                        <div class="progress-bar-wrapper">
+                                            <div class="progress-bar food-bar" id="bar-food" style="width: 28%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Transport -->
+                                    <div class="chart-progress-item">
+                                        <div class="chart-item-label">
+                                            <span>대중교통 이용료</span>
+                                            <strong id="pct-transport-text">8%</strong>
+                                        </div>
+                                        <div class="progress-bar-wrapper">
+                                            <div class="progress-bar transport-bar" id="bar-transport" style="width: 8%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Study/Ins -->
+                                    <div class="chart-progress-item">
+                                        <div class="chart-item-label">
+                                            <span>학습 교재 및 의료보험료</span>
+                                            <strong id="pct-study-text">12%</strong>
+                                        </div>
+                                        <div class="progress-bar-wrapper">
+                                            <div class="progress-bar study-bar" id="bar-study" style="width: 12%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Other -->
+                                    <div class="chart-progress-item">
+                                        <div class="chart-item-label">
+                                            <span>문화생활 및 기타 쇼핑비</span>
+                                            <strong id="pct-other-text">20%</strong>
+                                        </div>
+                                        <div class="progress-bar-wrapper">
+                                            <div class="progress-bar other-bar" id="bar-other" style="width: 20%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Savings Tips -->
+                        <div class="panel-box">
+                            <div class="panel-header">
+                                <h2><i class="fas fa-lightbulb"></i> 유니버디의 생활비 절약 팁 추천</h2>
+                            </div>
+                            <div class="panel-body">
+                                <div class="advice-content" id="savings-advice-box">
+                                    한국은 외식 물가가 높은 편이므로 E-Mart, Homeplus 또는 식재료 마트에서 장을 보아 직접 요리해 드시면 식비를 최고 50%까지 아낄 수 있습니다. 또한, 대중교통 이용 시 버스와 지하철 간에 30분 이내 무료 환승 혜택이 적용되니 꼭 교통카드를 등록하여 알뜰하게 이용하세요!
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </main>
+            </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Trần Yến Nhi (25071089). 사랑으로 만듦 <i class="fas fa-heart"></i></p>
-        </div>
-    </footer>
+            <!-- TAB 4: PACKING CHECKLIST -->
+            <section id="checklist" class="tab-content">
+                <div class="section-title-wrapper">
+                    <h1><i class="fas fa-clipboard-list icon-gradient"></i> 유학 준비 체크리스트</h1>
+                    <p>출국 전 필요한 준비물을 분류별로 꼼꼼히 체크해 두면 공항이나 현지에서 당황하는 일을 방지할 수 있습니다.</p>
+                </div>
 
+                <div class="checklist-overview-banner">
+                    <div class="overview-stats">
+                        <span class="checked-count" id="checklist-count-text">4 / 10개 준비 완료</span>
+                        <div class="progress-bar-wrapper">
+                            <div class="progress-bar" id="checklist-detail-progress-bar" style="width: 40%"></div>
+                        </div>
+                    </div>
+                    <div class="overview-motivation">
+                        <p id="checklist-motivation-message">파이팅! 옌니님의 완벽한 경민대 유학 준비를 유니버디가 응원합니다.</p>
+                    </div>
+                </div>
+
+                <div class="checklist-grid">
+                    <!-- Group 1: Giấy tờ -->
+                    <div class="panel-box">
+                        <div class="panel-header">
+                            <h2><i class="fas fa-file-invoice"></i> 필수 중요 서류</h2>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="checklist-group-list">
+                                <li class="checklist-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" class="checklist-checkbox" data-weight="1" checked>
+                                        <span class="custom-checkbox"></span>
+                                        <span class="checkbox-text">여권 원본 (만료 기간 6개월 이상 필수) 및 D-2 유학비자 승인서</span>
+                                    </label>
+                                </li>
+                                <li class="checklist-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" class="checklist-checkbox" data-weight="1" checked>
+                                        <span class="custom-checkbox"></span>
+                                        <span class="checkbox-text">경민대학교 표준입학허가서 (Admission Letter) 및 등록금 납부영수증</span>
+                                    </label>
+                                </li>
+                                <li class="checklist-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" class="checklist-checkbox" data-weight="1">
+                                        <span class="custom-checkbox"></span>
+                                        <span class="checkbox-text">영문 최종학력증명서 & 아포스티유 혹은 영사확인 원본 서류</span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Group 2: Thiết bị điện tử -->
+                    <div class="panel-box">
+                        <div class="panel-header">
+                            <h2><i class="fas fa-laptop"></i> 전자기기 & 테크 용품</h2>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="checklist-group-list">
+                                <li class="checklist-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" class="checklist-checkbox" data-weight="1" checked>
+                                        <span class="custom-checkbox"></span>
+                                        <span class="checkbox-text">스마트폰, 충전 케이블 및 노트북 컴퓨터</span>
+                                    </label>
+                                </li>
+                                <li class="checkbox-item checklist-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" class="checklist-checkbox" data-weight="1">
+                                        <span class="custom-checkbox"></span>
+                                        <span class="checkbox-text">변환 플러그 (한국의 경우 둥근 모양의 220V C형/F형 돼지코 사용)</span>
+                                    </label>
+                                </li>
+                                <li class="checklist-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" class="checklist-checkbox" data-weight="1">
+                                        <span class="custom-checkbox"></span>
+                                        <span class="checkbox-text">휴대용 보조배터리 (반드시 위탁 수하물이 아닌 기내 수하물로 휴대)</span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Group 3: Y tế & Sinh hoạt -->
+                    <div class="panel-box">
+                        <div class="panel-header">
+                            <h2><i class="fas fa-pills"></i> 상비약 & 위생 의료품</h2>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="checklist-group-list">
+                                <li class="checklist-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" class="checklist-checkbox" data-weight="1" checked>
+                                        <span class="custom-checkbox"></span>
+                                        <span class="checkbox-text">종합감기약, 해열제, 소화제, 지사제 및 알레르기 약 (약 3개월분)</span>
+                                    </label>
+                                </li>
+                                <li class="checklist-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" class="checklist-checkbox" data-weight="1">
+                                        <span class="custom-checkbox"></span>
+                                        <span class="checkbox-text">여분 안경 혹은 렌즈 (한국은 검사 및 안경 제작 비용이 비쌉니다)</span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Group 4: Tài chính & Tiền mặt -->
+                    <div class="panel-box">
+                        <div class="panel-header">
+                            <h2><i class="fas fa-money-bill-wave"></i> 화폐 및 결제 수단</h2>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="checklist-group-list">
+                                <li class="checklist-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" class="checklist-checkbox" data-weight="1">
+                                        <span class="custom-checkbox"></span>
+                                        <span class="checkbox-text">원화 현금 (한국 입국 직후 교통비나 비상용으로 쓸 약 50만 원 환전)</span>
+                                    </label>
+                                </li>
+                                <li class="checklist-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" class="checklist-checkbox" data-weight="1">
+                                        <span class="custom-checkbox"></span>
+                                        <span class="checkbox-text">해외 원화 결제가 가능한 신용카드/마스터카드/체크카드</span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Main Application Scripts -->
     <script src="script.js"></script>
 </body>
 </html>
