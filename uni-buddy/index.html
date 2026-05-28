@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uni-Buddy | Trần Yến Nhi (25071089)</title>
+    <meta name="description" content="Uni-Buddy - Ứng dụng hỗ trợ sinh viên mới nhập học của Trần Yến Nhi">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <h2>Uni<span>Buddy</span></h2>
+        </div>
+
+        <div class="user-profile-summary">
+            <img src="../avatar.png" alt="Profile" class="profile-avatar" id="sidebarAvatar" onerror="this.src='https://api.dicebear.com/7.x/lorelei/svg?seed=Jasmine&backgroundColor=ffd1dc'">
+            <div class="profile-info">
+                <h3>Trần Yến Nhi</h3>
+                <p class="profile-id">ID: 25071089</p>
+                <span class="profile-tag">소프트웨어 공학</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="nav-item">
+                    <button class="nav-link active" id="nav-dashboard" onclick="switchTab('dashboard')">
+                        <i class="fa-solid fa-house"></i>
+                        <span>대시보드</span>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" id="nav-chatbot" onclick="switchTab('chatbot')">
+                        <i class="fa-solid fa-robot"></i>
+                        <span>Uni-Buddy AI</span>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" id="nav-budget" onclick="switchTab('budget')">
+                        <i class="fa-solid fa-wallet"></i>
+                        <span>예산 계획</span>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" id="nav-checklist" onclick="switchTab('checklist')">
+                        <i class="fa-solid fa-list-check"></i>
+                        <span>짐 체크리스트</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <p>Made with <i class="fa-solid fa-heart"></i> by Yến Nhi</p>
+        </div>
+    </aside>
+
+    <!-- Overlay for mobile sidebar -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeMobileSidebar()"></div>
+
+    <!-- ============ MAIN CONTENT ============ -->
+    <main class="main-content">
+
+        <!-- Mobile Header -->
+        <header class="mobile-header">
+            <button class="hamburger-menu" id="hamburgerBtn" onclick="openMobileSidebar()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="mobile-brand">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <h2>Uni<span style="color:var(--secondary-color)">Buddy</span></h2>
+            </div>
+            <div class="mobile-avatar">
+                <img src="../avatar.png" alt="Profile" onerror="this.src='https://api.dicebear.com/7.x/lorelei/svg?seed=Jasmine&backgroundColor=ffd1dc'">
+            </div>
+        </header>
+
+        <!-- ============ TAB 1: DASHBOARD ============ -->
+        <section class="tab-content active" id="tab-dashboard">
+
+            <!-- Welcome Banner -->
+            <div class="welcome-banner">
+                <div class="banner-text">
+                    <h1>👋 안녕하세요, Yến Nhi!</h1>
+                    <p>대학 생활의 새로운 여정을 시작하신 것을 환영합니다. Uni-Buddy가 항상 곁에서 도와드릴게요!</p>
+                </div>
+                <div class="banner-countdown">
+                    <div class="countdown-value" id="daysLeft">--</div>
+                    <div class="countdown-label">📅 개강까지 남은 날</div>
+                </div>
+            </div>
+
+            <!-- Metric Cards -->
+            <div class="dashboard-grid">
+                <!-- Card 1: Checklist progress -->
+                <div class="dashboard-card">
+                    <div class="card-icon blue-gradient"><i class="fa-solid fa-suitcase-rolling"></i></div>
+                    <div class="card-details">
+                        <h3>짐 준비 현황</h3>
+                        <div class="progress-container">
+                            <div class="progress-bar-wrapper">
+                                <div class="progress-bar" id="packProgress" style="width: 0%"></div>
+                            </div>
+                            <p class="progress-text" id="packProgressText">0 / 20 항목 완료</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2: Status -->
+                <div class="dashboard-card">
+                    <div class="card-icon green-gradient"><i class="fa-solid fa-user-graduate"></i></div>
+                    <div class="card-details">
+                        <h3>입학 상태</h3>
+                        <span class="status-badge success">✅ 입학 확정</span>
+                        <p class="status-desc">소프트웨어 공학과 · 2025학년도</p>
+                    </div>
+                </div>
+                <!-- Card 3: Budget summary -->
+                <div class="dashboard-card">
+                    <div class="card-icon purple-gradient"><i class="fa-solid fa-coins"></i></div>
+                    <div class="card-details">
+                        <h3>예상 월 생활비</h3>
+                        <span class="budget-value" id="dashBudget">₩ ---</span>
+                        <span class="budget-label">예산 플래너에서 계산하기 →</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tips + Map -->
+            <div class="section-row">
+                <div class="panel-box">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-lightbulb"></i> 신입생 준비 팁</h2>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="tips-list">
+                            <li>
+                                <span class="tip-icon"><i class="fa-solid fa-passport"></i></span>
+                                <div class="tip-content">
+                                    <h4>비자 및 서류 준비</h4>
+                                    <p>학생 비자(D-2), 입학허가서, 여권 사본, 건강보험 서류를 미리 준비하세요.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="tip-icon"><i class="fa-solid fa-building"></i></span>
+                                <div class="tip-content">
+                                    <h4>기숙사/숙소 신청</h4>
+                                    <p>대부분의 학교는 국제 학생을 위한 기숙사를 제공합니다. 마감일을 꼭 확인하세요!</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="tip-icon"><i class="fa-solid fa-mobile-screen"></i></span>
+                                <div class="tip-content">
+                                    <h4>한국 유심 구입</h4>
+                                    <p>공항 도착 즉시 KT, SKT 또는 LG U+에서 유학생 전용 유심을 구입할 수 있습니다.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="tip-icon"><i class="fa-solid fa-credit-card"></i></span>
+                                <div class="tip-content">
+                                    <h4>은행 계좌 개설</h4>
+                                    <p>여권 + 외국인등록증을 지참하여 카카오뱅크, 우리은행 등에서 계좌를 개설하세요.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-box school-map-panel">
+                    <div class="map-placeholder">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <h4>학교 캠퍼스 지도</h4>
+                        <p>학교 홈페이지 또는 네이버 지도 앱에서 캠퍼스 위치와 강의동을 미리 확인하세요.</p>
+                        <a href="https://map.naver.com" target="_blank" class="btn btn-primary">
+                            <i class="fa-solid fa-location-dot"></i> 지도 열기
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ============ TAB 2: CHATBOT ============ -->
+        <section class="tab-content" id="tab-chatbot">
+            <div class="chatbot-container glassmorphism">
+                <!-- Header -->
+                <div class="chat-header">
+                    <div class="bot-info-header">
+                        <div class="bot-avatar-wrapper">
+                            <div class="bot-avatar">🤖</div>
+                            <div class="active-dot"></div>
+                        </div>
+                        <div class="bot-name-status">
+                            <h3>Uni-Buddy AI</h3>
+                            <p>온라인 · 항상 도움 준비됨</p>
+                        </div>
+                    </div>
+                    <div class="chat-actions">
+                        <button onclick="clearChat()" title="대화 초기화"><i class="fa-solid fa-rotate-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Suggested Prompts -->
+                <div class="suggested-prompts-container">
+                    <div class="suggest-label"><i class="fa-solid fa-sparkles"></i> 추천 질문:</div>
+                    <div class="suggested-prompts">
+                        <button class="prompt-btn" onclick="sendPrompt('한국 유학 비자는 어떻게 신청하나요?')">🛂 비자 신청 방법</button>
+                        <button class="prompt-btn" onclick="sendPrompt('기숙사 생활 시 필요한 물품은 무엇인가요?')">🏠 기숙사 준비물</button>
+                        <button class="prompt-btn" onclick="sendPrompt('한국 대학교 수업은 어떤 방식인가요?')">📚 대학 수업 방식</button>
+                        <button class="prompt-btn" onclick="sendPrompt('한국에서 아르바이트를 할 수 있나요?')">💼 유학생 아르바이트</button>
+                        <button class="prompt-btn" onclick="sendPrompt('한국어를 빠르게 배우는 방법은?')">🗣️ 한국어 학습 팁</button>
+                    </div>
+                </div>
+
+                <!-- Messages -->
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot">
+                        <div class="message-avatar">🤖</div>
+                        <div class="message-bubble-wrapper">
+                            <div class="message-bubble">
+                                안녕하세요 <strong>Yến Nhi</strong>! 👋<br><br>
+                                저는 <strong>Uni-Buddy</strong>예요. 한국 대학 생활 준비를 도와드리기 위해 여기 있어요!<br><br>
+                                비자 준비, 짐 싸기, 기숙사, 생활비, 한국어 학습 등 궁금한 것이 있으면 뭐든지 물어보세요 😊
+                            </div>
+                            <span class="message-time" id="botInitTime"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Typing indicator -->
+                <div class="typing-indicator" id="typingIndicator">
+                    <span></span><span></span><span></span>
+                </div>
+
+                <!-- Input -->
+                <div class="chat-input-area">
+                    <input type="text" id="chatInput" placeholder="메시지를 입력하세요..." onkeydown="if(event.key==='Enter') sendMessage()">
+                    <button class="send-btn" onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ TAB 3: BUDGET PLANNER ============ -->
+        <section class="tab-content" id="tab-budget">
+            <div class="section-title-wrapper">
+                <h1><i class="fa-solid fa-wallet icon-gradient"></i> 월 생활비 계획</h1>
+                <p>한국 유학 생활의 예상 월 지출을 계산해보세요.</p>
+            </div>
+
+            <div class="planner-layout">
+                <!-- Config -->
+                <div class="panel-box planner-config">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-sliders"></i> 지출 항목 입력</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label>🏠 월세 / 기숙사비</label>
+                            <div class="input-unit">
+                                <input type="number" class="form-control budget-input" id="b-rent" value="350000" min="0" oninput="calculateBudget()">
+                                <span class="unit-label">₩</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>🍜 식비 (월)</label>
+                            <div class="input-unit">
+                                <input type="number" class="form-control budget-input" id="b-food" value="250000" min="0" oninput="calculateBudget()">
+                                <span class="unit-label">₩</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>🚌 교통비</label>
+                            <div class="input-unit">
+                                <input type="number" class="form-control budget-input" id="b-transport" value="80000" min="0" oninput="calculateBudget()">
+                                <span class="unit-label">₩</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>📚 학습 자료 / 문구류</label>
+                            <div class="input-unit">
+                                <input type="number" class="form-control budget-input" id="b-study" value="50000" min="0" oninput="calculateBudget()">
+                                <span class="unit-label">₩</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>🛍️ 기타 생활비</label>
+                            <div class="input-unit">
+                                <input type="number" class="form-control budget-input" id="b-other" value="100000" min="0" oninput="calculateBudget()">
+                                <span class="unit-label">₩</span>
+                            </div>
+                            <span class="form-text">여가, 쇼핑, 통신비 등을 포함하세요</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results -->
+                <div class="planner-results">
+                    <!-- Total Card -->
+                    <div class="gradient-bg-box total-budget-card">
+                        <p class="total-header">💰 예상 월 총 생활비</p>
+                        <div class="total-amount" id="totalBudget">₩ 830,000</div>
+                        <p class="country-exchange-desc" id="vndAmount">≈ 15,000,000 VND</p>
+                    </div>
+
+                    <!-- Chart -->
+                    <div class="panel-box">
+                        <div class="panel-header">
+                            <h2><i class="fa-solid fa-chart-bar"></i> 지출 비율</h2>
+                        </div>
+                        <div class="panel-body">
+                            <div class="visual-progress-chart" id="budgetChart">
+                                <!-- Dynamically generated -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Advice -->
+                    <div class="panel-box">
+                        <div class="panel-header">
+                            <h2><i class="fa-solid fa-circle-info"></i> 절약 팁</h2>
+                        </div>
+                        <div class="panel-body">
+                            <p class="advice-content" id="budgetAdvice">
+                                학생 식당(학식)을 이용하면 식비를 절약할 수 있어요. 대부분 3,000~5,000원으로 한 끼를 해결할 수 있습니다. 
+                                교통카드(T-money)를 충전해서 버스와 지하철을 이용하면 더욱 저렴해요! 🚇
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ TAB 4: PACKING CHECKLIST ============ -->
+        <section class="tab-content" id="tab-checklist">
+            <div class="section-title-wrapper">
+                <h1><i class="fa-solid fa-suitcase-rolling icon-gradient"></i> 짐 체크리스트</h1>
+                <p>한국 유학 출발 전 꼭 챙겨야 할 것들을 확인해보세요!</p>
+            </div>
+
+            <!-- Overview Banner -->
+            <div class="checklist-overview-banner">
+                <div class="overview-stats">
+                    <span class="checked-count" id="checklistCount">0 / 0 항목 완료</span>
+                    <div class="progress-bar-wrapper">
+                        <div class="progress-bar" id="checklistProgress" style="width:0%"></div>
+                    </div>
+                </div>
+                <div class="overview-motivation">
+                    <p id="motivationText">✨ 체크리스트를 시작해보세요!</p>
+                </div>
+            </div>
+
+            <!-- Checklist Grid -->
+            <div class="checklist-grid" id="checklistGrid">
+                <!-- Groups injected by JS -->
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

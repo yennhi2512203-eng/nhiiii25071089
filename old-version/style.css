@@ -1,0 +1,153 @@
+/* ==============================================================
+   Bright Modern Theme for Uni‑Buddy
+   ==============================================================
+   - Vibrant gradient background
+   - Glass‑morphism cards
+   - Accent colors: teal, magenta, amber
+   - Smooth hover transitions
+   - Mobile‑responsive layout
+   ============================================================== */
+
+/* Global reset & typography */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 55%, #fad0c4 100%);
+  color: #222;
+}
+
+/* App container */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  background: transparent;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  border-right: 1px solid rgba(255,255,255,0.3);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+}
+.sidebar-brand h2 {
+  color: #fff;
+  font-weight: 600;
+}
+.sidebar-nav .nav-link {
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: background 0.3s;
+}
+.sidebar-nav .nav-link.active,
+.sidebar-nav .nav-link:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+/* Main content */
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+/* Glassmorphism cards */
+.dashboard-card, .panel-box {
+  background: rgba(255,255,255,0.25);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.18);
+  transition: transform 0.2s;
+}
+.dashboard-card:hover, .panel-box:hover {
+  transform: translateY(-4px);
+}
+
+/* Buttons */
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 500;
+  transition: background 0.3s, transform 0.2s;
+}
+button:hover {
+  background: rgba(255,255,255,0.4);
+  transform: translateY(-2px);
+}
+.send-btn {
+  background: #ff6f91;
+  color: #fff;
+}
+.prompt-btn {
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+  margin: 0.3rem;
+}
+
+/* Chat bubbles */
+.message-bubble {
+  background: rgba(255,255,255,0.3);
+  color: #fff;
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
+  max-width: 70%;
+}
+.message.user .message-bubble { background: #ffcc80; color: #000; }
+.message.bot .message-bubble { background: #80d8ff; color: #000; }
+
+/* Progress bars */
+.progress-bar-wrapper {
+  background: rgba(255,255,255,0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  height: 12px;
+}
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #ff9a9e, #fad0c4);
+  transition: width 0.4s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .mobile-header { display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 1rem; background: rgba(255,255,255,0.2); }
+}
+
+/* Language selector */
+.language-selector {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255,255,255,0.2);
+  border-radius: 12px;
+  padding: 0.4rem 0.8rem;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1000;
+}
+.language-selector:hover { background: rgba(255,255,255,0.3); }
+
+/* Footer */
+.sidebar-footer p { color: #ddd; font-size: 0.85rem; }
+
+/* Misc */
+a { color: inherit; text-decoration: none; }

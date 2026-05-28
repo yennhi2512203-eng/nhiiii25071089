@@ -1,3 +1,4 @@
+OK
 /* ==========================================================================
    UNI-BUDDY CORE LOGIC (KOREAN TRANSLATION)
    Author: Trần Yến Nhi (25071089)
@@ -19,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add active class to selected link and tab content
         const targetLink = document.querySelector(`.nav-link[data-tab="${tabId}"]`);
         const targetTab = document.getElementById(tabId);
-        
+
         if (targetLink && targetTab) {
             targetLink.classList.add('active');
             targetTab.classList.add('active');
@@ -35,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const tabId = link.getAttribute('data-tab');
             switchTab(tabId);
-            
+
             // Close mobile sidebar on link click
             if (window.innerWidth <= 768) {
                 sidebar.style.display = 'none';
@@ -51,13 +52,13 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 sidebar.style.display = 'flex';
                 sidebar.style.width = '280px';
-                
+
                 // Show logo & details on mobile drawer
                 const brandH2 = sidebar.querySelector('.sidebar-brand h2');
                 const profileInfo = sidebar.querySelector('.user-profile-summary .profile-info');
                 const navSpans = sidebar.querySelectorAll('.sidebar-nav span');
                 const footer = sidebar.querySelector('.sidebar-footer');
-                
+
                 if (brandH2) brandH2.style.display = 'block';
                 if (profileInfo) profileInfo.style.display = 'block';
                 navSpans.forEach(span => span.style.display = 'block');
@@ -71,13 +72,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.innerWidth > 768) {
             sidebar.style.display = 'flex';
             sidebar.style.width = ''; // Reset to CSS default width
-            
+
             // Restore hidden components on larger screens
             const brandH2 = sidebar.querySelector('.sidebar-brand h2');
             const profileInfo = sidebar.querySelector('.user-profile-summary .profile-info');
             const navSpans = sidebar.querySelectorAll('.sidebar-nav span');
             const footer = sidebar.querySelector('.sidebar-footer');
-            
+
             if (brandH2) brandH2.style.display = '';
             if (profileInfo) profileInfo.style.display = '';
             navSpans.forEach(span => span.style.display = '');
@@ -96,8 +97,72 @@ document.addEventListener('DOMContentLoaded', () => {
     const clearChatBtn = document.getElementById('clear-chat');
     const suggestedPromptButtons = document.querySelectorAll('.prompt-btn');
 
-    // Predefined AI Knowledge Base in Korean
-    const chatbotKnowledge = {
+ // Internationalization resources (simple embedded object)
+const i18nResources = {
+  ko: {
+    translation: {
+      // UI text keys (example, extend as needed)
+      "quick_prompt_label": "<i class=\"fas fa-bolt\"></i> 빠른 추천 질문:",
+      "chat_placeholder": "여기에 질문을 입력해 주세요... (예: 비자 연장 방법, 맛있는 음식 추천...)",
+      "welcome_msg": "안녕하세요, 옌니(Trần Yến Nhi)님! 저는 <strong>경민대학교(경민대)</strong> 유학 생활을 함께할 스마트 비서 <strong>유니버디(Uni-Buddy)</strong>입니다. 🌟",
+      "welcome_desc": "비자 연장 서류, 경민대 후문/정문 맛집, 기숙사 규칙, 유학생 아르바이트 허가 신청 등 궁금한 점을 편하게 물어보세요! 위의 빠른 추천 버튼을 누르셔도 답변해 드립니다!"
+    }
+  },
+  vi: {
+    translation: {
+      "quick_prompt_label": "<i class=\"fas fa-bolt\"></i> Câu hỏi nhanh gợi ý:",
+      "chat_placeholder": "Nhập câu hỏi ở đây... (ví dụ: cách gia hạn visa, đề xuất món ăn ngon...)",
+      "welcome_msg": "Chào bạn, Nhi! Tôi là <strong>Uni‑Buddy</strong> – trợ lý thông minh cho cuộc sống du học tại <strong>Đại học Kyungmin</strong>. 🌟",
+      "welcome_desc": "Bạn có thể hỏi về giấy tờ xin visa, nhà ăn quanh trường, quy định ký túc xá, việc làm part‑time… Nhấn các nút gợi ý nhanh phía dưới để nhận câu trả lời!"
+    }
+  },
+  en: {
+    translation: {
+      "quick_prompt_label": "<i class=\"fas fa-bolt\"></i> Quick Suggested Questions:",
+      "chat_placeholder": "Type your question here... (e.g., visa extension steps, food recommendations…)",
+      "welcome_msg": "Hello, Nhi! I’m <strong>Uni‑Buddy</strong>, your smart assistant for life at <strong>Kyungmin University</strong>. 🌟",
+      "welcome_desc": "Feel free to ask about visa extension documents, nearby eateries, dorm rules, part‑time job permits, etc. You can also click the quick suggestion buttons below!"
+    }
+  }
+};
+
+// Current language state (default to stored preference or Korean)
+let currentLang = localStorage.getItem('uiLang') || 'ko';
+
+// Simple i18n function (mimics i18next.t)
+function t(key) {
+  const ns = i18nResources[currentLang]?.translation || {};
+  return ns[key] || key;
+}
+
+// Update all elements with data-i18n attribute
+function updateContent() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (el.tagName === 'INPUT') {
+      el.setAttribute('placeholder', t(key));
+    } else {
+      el.innerHTML = t(key);
+    }
+  });
+}
+
+// Language selector handling (assumes a <select id="language-select"> exists)
+const languageSelect = document.getElementById('language-select');
+if (languageSelect) {
+  languageSelect.value = currentLang;
+  languageSelect.addEventListener('change', () => {
+    currentLang = languageSelect.value;
+    localStorage.setItem('uiLang', currentLang);
+    updateContent();
+    // also update chatbot knowledge base selection (handled later)
+  });
+}
+
+// Initial UI translation
+document.addEventListener('DOMContentLoaded', () => {
+  updateContent();
+});
         "visa": `안녕하세요, 옌니님! **경민대학교(Kyungmin University)**에서 **D-2 유학 비자**를 연장하는 절차와 제출 서류는 다음과 같습니다:
         <br><br>
         1. <strong>필수 제출 서류 목록:</strong>
@@ -190,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
         messageDiv.classList.add('message', sender);
 
         const avatar = sender === 'bot' ? '🦉' : '👤';
-        
+
         // Generate current time
         const now = new Date();
         const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
@@ -208,14 +273,55 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Bot Response Logic (Korean matches)
-    function getBotReply(userMessage) {
+// Update chatbot knowledge when language changes
+function refreshChatbotKnowledge() {
+  // Reassign the knowledge object based on current language
+  // This updates the global constant used by getBotReply
+  // eslint-disable-next-line no-global-assign
+  chatbotKnowledge = knowledgeBase[currentLang];
+}
+
+// Ensure getBotReply uses the latest knowledge
+function getBotReply(userMessage) {
+  const msg = userMessage.toLowerCase().trim();
+  // Language‑specific knowledge lookup
+  if (msg.includes('비자') || msg.includes('연장') || msg.includes('visa') || msg.includes('d-2') || msg.includes('d2')) {
+    return chatbotKnowledge.visa;
+  }
+  if (msg.includes('맛집') || msg.includes('음식') || msg.includes('맛있는') || msg.includes('먹') || msg.includes('식사') || msg.includes('국수') || msg.includes('비빔밥') || msg.includes('doan')) {
+    return chatbotKnowledge.doan;
+  }
+  if (msg.includes('서류') || msg.includes('입국') || msg.includes('준비') || msg.includes('제출')) {
+    return chatbotKnowledge.giayto;
+  }
+  if (msg.includes('기숙사') || msg.includes('생활관') || msg.includes('방') || msg.includes('거주') || msg.includes('ktx')) {
+    return chatbotKnowledge.kytucxa;
+  }
+  if (msg.includes('아르바이트') || msg.includes('알바') || msg.includes('일') || msg.includes('취업') || msg.includes('돈')) {
+    return chatbotKnowledge.lamthem;
+  }
+  return chatbotKnowledge.default;
+}
+
+// Listen for language selector changes to refresh knowledge and UI
+if (languageSelect) {
+  languageSelect.addEventListener('change', () => {
+    refreshChatbotKnowledge();
+    // Also update static UI strings that were set initially (welcome message)
+    const botMsgDiv = document.querySelector('.message.bot .message-bubble');
+    if (botMsgDiv) {
+      botMsgDiv.innerHTML = `${t('welcome_msg')}<br><br>${t('welcome_desc')}`;
+    }
+  });
+}
+
         const msg = userMessage.toLowerCase().trim();
 
         // 1. Visa queries
         if (msg.includes('비자') || msg.includes('연장') || msg.includes('visa') || msg.includes('d-2') || msg.includes('d2')) {
             return chatbotKnowledge.visa;
         }
-        
+
         // 2. Food queries (맛집, 식당, 국수, 밥...)
         if (msg.includes('맛집') || msg.includes('음식') || msg.includes('맛있는') || msg.includes('먹') || msg.includes('식사') || msg.includes('국수') || msg.includes('비빔밥') || msg.includes('도안') || msg.includes('doan')) {
             return chatbotKnowledge.doan;
@@ -363,14 +469,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Formats numbers with comma thousands separator
         const formattedTotal = total.toLocaleString('en-US');
-        
+
         // Update Displays
         totalExpenseDisplay.textContent = `${formattedTotal} ${config.currency}`;
-        
+
         // Exchange conversion to VND
         const totalVND = Math.round(total * config.exchangeRate);
         exchangeDisplay.textContent = `~ ${totalVND.toLocaleString('vi-VN')} VNĐ (환산 기준: ${config.vndText})`;
-        
+
         // Update Advisor panel text
         savingsAdviceBox.innerHTML = config.advice;
 
@@ -421,7 +527,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const checkedCountText = document.getElementById('checklist-count-text');
     const checklistDetailProgressBar = document.getElementById('checklist-detail-progress-bar');
     const checklistMotivationMessage = document.getElementById('checklist-motivation-message');
-    
+
     const packingProgressBarDashboard = document.getElementById('packing-progress-bar');
     const packingProgressTextDashboard = document.getElementById('packing-progress-text');
 
