@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Sparkles, Mail, MapPin, Phone, Github, Linkedin, Instagram } from 'lucide-react';
+import { Sparkles, Mail, MapPin, Phone, ExternalLink } from 'lucide-react';
 
 export default function Footer() {
   const { t } = useTranslation();
@@ -19,9 +19,9 @@ export default function Footer() {
               {t('hero.slogan')}
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-slate-400 hover:text-ai-cyan transition-colors"><Github className="w-5 h-5" /></a>
-              <a href="#" className="text-slate-400 hover:text-ai-cyan transition-colors"><Linkedin className="w-5 h-5" /></a>
-              <a href="#" className="text-slate-400 hover:text-ai-cyan transition-colors"><Instagram className="w-5 h-5" /></a>
+              <a href="#" className="text-slate-400 hover:text-ai-cyan transition-colors"><ExternalLink className="w-5 h-5" /></a>
+              <a href="#" className="text-slate-400 hover:text-ai-cyan transition-colors"><ExternalLink className="w-5 h-5" /></a>
+              <a href="#" className="text-slate-400 hover:text-ai-cyan transition-colors"><ExternalLink className="w-5 h-5" /></a>
             </div>
           </div>
 

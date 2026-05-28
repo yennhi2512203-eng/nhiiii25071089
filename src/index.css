@@ -1,27 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer utilities {
-  .glass {
-    @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-[0_4px_30px_rgba(0,0,0,0.1)];
-  }
-  
-  .glass-dark {
-    @apply bg-slate-900/40 backdrop-blur-lg border border-slate-700/50 shadow-[0_4px_30px_rgba(0,0,0,0.3)];
-  }
+@theme {
+  --color-ai-blue: #1E3A8A;
+  --color-ai-cyan: #06B6D4;
+  --color-ai-purple: #6366F1;
+  --color-ai-dark: #0F172A;
+  --font-sans: 'Poppins', 'Inter', sans-serif;
+}
 
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-ai-cyan to-ai-purple;
-  }
+/* Utility classes */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.dark .glass-dark,
+.glass-dark {
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(to right, var(--color-ai-cyan), var(--color-ai-purple));
 }
 
 body {
-  @apply bg-slate-50 text-slate-900 dark:bg-ai-dark dark:text-slate-100 font-sans transition-colors duration-300;
+  background-color: #f8fafc;
+  color: #0f172a;
+  font-family: var(--font-sans);
   margin: 0;
   overflow-x: hidden;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dark body,
+html.dark body {
+  background-color: var(--color-ai-dark);
+  color: #f1f5f9;
 }
 
 /* Custom Scrollbar */
@@ -32,8 +58,15 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-300 dark:bg-slate-700 rounded-full;
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
 }
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-slate-400 dark:bg-slate-600;
+  background: #94a3b8;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
 }
